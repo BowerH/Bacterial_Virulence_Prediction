@@ -8,30 +8,19 @@ A working Repo for CSE7850 Project, Predicting bacterial virulence and pathogeni
 #### 1. Make sure you have all dependencies installed:
 
 ```
-pip install pandas biopython transformers torch pyarrow numpy matplotlib tensorflow scikit-learn transformers
+pip install pandas numpy matplotlib seaborn scikit-learn biopython torch fair-esm xgboost lightgbm catboost scikit-optimize joblib colabfold
 ```
 
-#### 2. Pre process data
+#### 2. Fetch Data
 
-```
-python preprocessing.py
-```
+For ease of use, we provided a dataset that we used for our report. These are two files located in the Data/ folder.
 
-#### 3. Submit AlphaFold job to HPC
+If you are looking to run this on a different dataset, you must follow these steps:
+    1.
+    2.
+    3.
 
-Note: This MUST be run on an NVDIA A100 GPU
-
-```
-sbatch alphafold/run_alphafold.slurm
-```
-
-#### 4. Process Alphafold Structures
-
-```
-python process_structures.py
-```
-
-#### 5. Train the model
+#### 3. Train the model
 
 ```
 python train_model.py \
@@ -40,7 +29,7 @@ python train_model.py \
   --output models/virulence_prediction
 ```
 
-#### 6. Run Final Analysis and visualizations
+#### 4. Run Final Analysis and visualizations
 
 ```
 jupyter notebook Notebooks/main_analysis.ipynb
@@ -49,28 +38,15 @@ jupyter notebook Notebooks/main_analysis.ipynb
 ## Github Layout
 
 ```
-project_root/
-├── Notebooks/
-│   ├── main_analysis.ipynb      # Primary Jupyter notebook
-│   ├── temp.ipynb               # Optional exploratory notebooks
+Bacterial_Virulence_Prediction/
 ├── Data/
-│   ├── Raw_Data/                # Raw datasets (VFDB, MvirDB,UniProt)
-│   ├── processed/               # Processed datasets (embeddings, features)
+│   ├── structure_features_extracted_clean.csv                     # Processed CSV file for non virulent protiens
+│   ├── structure_features_extracted_clean_final.csv               # Processed CSV file for virulent protiens
 ├── Scripts/
-│   ├── preprocessing.py            # Data preprocessing script
-│   ├── train_model.py           # Model training script
-├── Results/
-│   ├── Figures/                 # ROC curves, heatmaps, etc.
-│   ├── predictions.csv          # Model predictions
-├── Alphafold/
-│   ├── run_alphafold.slurm       # HPC submission script
-│   └── process_structures.py 
-├── environment.yml              # Conda environment file
+│   ├── Generate_Virulent_CSV.ipynb           # Script to generate virulent CSV file
+│   └── Model_Training.ipynb                  # Model training script
+├── environment.yml                           # Conda environment file
 ├── README.md                    
-└── .gitignore                   # Files to exclude from Git tracking
+└── .gitignore                                # Files to exclude from Git tracking
 ```
-
-## CPU Requirements
-
-NVDIA A100 GPU
 
