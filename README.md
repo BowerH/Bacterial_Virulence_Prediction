@@ -14,29 +14,29 @@ A working Repo for CSE7850 Project, Predicting bacterial virulence and pathogeni
 
 #### Data Collection:
 
-Virulent sequences sourced from VFDB
+- Virulent sequences sourced from VFDB
 
-Non-virulent sequences from UniProt (e.g., B. subtilis)
+- Non-virulent sequences from UniProt (e.g., B. subtilis)
 
 #### Structure Retrieval:
 
-UniProt IDs mapped to AlphaFoldDB entries
+- UniProt IDs mapped to AlphaFoldDB entries
 
-3D structure files (.pdb) downloaded automatically
+- 3D structure files (.pdb) downloaded automatically
 
 #### Feature Extraction:
 
-Secondary structure content (α-helix, β-sheet, coil)
+- Secondary structure content (α-helix, β-sheet, coil)
 
-Hydrogen bond density via DSSP
+- Hydrogen bond density via DSSP
 
-Confidence metrics (mean pLDDT)
+- Confidence metrics (mean pLDDT)
 
 #### Model Training:
 
-Feature matrices combined and labeled (1 = virulent, 0 = non-virulent)
+- Feature matrices combined and labeled (1 = virulent, 0 = non-virulent)
 
-Classifier trained with stratified sampling and evaluated on a held-out test set
+- Classifier trained with stratified sampling and evaluated on a held-out test set
 
 
 ## ⚙️ Dependencies
@@ -98,6 +98,16 @@ Bacterial_Virulence_Prediction/
 ├── README.md                                  # Project overview and usage instructions
 └── .gitignore                                 # Ignore logs, checkpoints, cache files, etc.
 ```
+
+## 👥 Contributors
+
+| Name | GitHub | 
+|------|--------|
+| <img src="https://github.com/sanyabadole.png" width="50"/> | [@sanyabadole](https://github.com/sanyabadole) 
+| <img src="https://github.com/BowerH.png" width="50"/> | [@BowerH](https://github.com/BowerH) 
+| <img src="https://github.com/binfwizard.png" width="50"/> | [@binfwizard](https://github.com/binfwizard) 
+| <img src="[https://github.gatech.edu/rfatma3).png" width="50"/> | [@rfatma3](https://github.gatech.edu/rfatma3) 
+
 
 ## 📌 Citation
 
