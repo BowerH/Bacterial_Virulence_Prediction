@@ -1,52 +1,104 @@
-# Bacterial_Virulence_Prediction
+# 🦠 Protein Structure-Based Virulence Prediction
 
 A working Repo for CSE7850 Project, Predicting bacterial virulence and pathogenicity from protein folding patterns using machine learning algorithms
 
+## 📁 Repository Structure
 
-## How to run
+```GeneratingVirulentData.ipynb```: Downloads and processes virulent protein sequences from VFDB, converts RefSeq IDs to UniProt IDs, and retrieves AlphaFold structures.
 
-#### 1. Make sure you have all dependencies installed:
+```GeneratingNonVirulentData.ipynb```: Collects non-virulent protein sequences from non-pathogenic organisms (e.g., Bacillus subtilis), processes them similarly, and prepares them for feature extraction.
+
+```MLModelTraining.ipynb```: Loads extracted features, performs preprocessing, and trains machine learning models to classify proteins as virulent or non-virulent.
+
+## 🧬 Workflow Overview
+
+#### Data Collection:
+
+Virulent sequences sourced from VFDB
+
+Non-virulent sequences from UniProt (e.g., B. subtilis)
+
+#### Structure Retrieval:
+
+UniProt IDs mapped to AlphaFoldDB entries
+
+3D structure files (.pdb) downloaded automatically
+
+#### Feature Extraction:
+
+Secondary structure content (α-helix, β-sheet, coil)
+
+Hydrogen bond density via DSSP
+
+Confidence metrics (mean pLDDT)
+
+#### Model Training:
+
+Feature matrices combined and labeled (1 = virulent, 0 = non-virulent)
+
+Classifier trained with stratified sampling and evaluated on a held-out test set
+
+
+## ⚙️ Dependencies
+
+Install via ```conda```:
 
 ```
-pip install pandas numpy matplotlib seaborn scikit-learn biopython torch fair-esm xgboost lightgbm catboost scikit-optimize joblib colabfold
+conda create -n virulence-prediction python=3.10
+conda activate virulence-prediction
+conda install -c conda-forge biopython pandas jupyter scikit-learn
+pip install tqdm torch esm biopandas
 ```
 
-#### 2. Fetch Data
+Also required:
 
-For ease of use, we provided a dataset that we used for our report. These are two files located in the Data/ folder.
+AlphaFoldDB access (public download)
 
-If you are looking to run this on a different dataset, you must follow these steps:
-    1.
-    2.
-    3.
+DSSP executable (```mkdssp```, via ```conda install -c salilab dssp```)
 
-#### 3. Train the model
+## 📊 Output
+
+```virulent_features.csv``` / ```nonvirulent_features.csv```: Structural features extracted from PDBs
+
+Trained model and performance metrics (accuracy, F1-score, etc.)
+
+Ready-to-use classifier for predicting new protein sequences
+
+
+## 🚀 How to run
+
+Clone this repo:
 
 ```
-python train_model.py \
-  --embeddings data/processed/sequence_embeddings.parquet \
-  --structure data/processed/structural_features.csv \
-  --output models/virulence_prediction
+git clone https://github.com/your-username/virulence-structure-prediction.git
+cd virulence-structure-prediction
 ```
 
-#### 4. Run Final Analysis and visualizations
+Run the notebooks in order:
 
-```
-jupyter notebook Notebooks/main_analysis.ipynb
-```
+- ```Scripts/GeneratingVirulentData.ipynb```
+- ```Scripts/GeneratingNonVirulentData.ipynb```
+- ```Scripts/MLModelTraining.ipynb```
 
 ## Github Layout
 
 ```
 Bacterial_Virulence_Prediction/
 ├── Data/
-│   ├── structure_features_extracted_clean.csv                     # Processed CSV file for non virulent protiens
-│   ├── structure_features_extracted_clean_final.csv               # Processed CSV file for virulent protiens
+│   ├── structure_features_extracted_clean.csv                     # Non-virulent protein features
+│   ├── structure_features_extracted_clean_final.csv               # Virulent protein features
 ├── Scripts/
-│   ├── Generate_Virulent_CSV.ipynb           # Script to generate virulent CSV file
-│   └── Model_Training.ipynb                  # Model training script
-├── environment.yml                           # Conda environment file
-├── README.md                    
-└── .gitignore                                # Files to exclude from Git tracking
+│   ├── GeneratingVirulentData.ipynb           # Downloads and processes virulent protein data
+│   ├── GeneratingNonVirulentData.ipynb        # Downloads and processes non-virulent protein data
+│   ├── Model_Training.ipynb                   # Trains classification models
+├── Model/
+│   ├── ML_final_ensemble_model.pkl            # Trained ensemble model (e.g. RandomForest + XGBoost)
+├── Attachments/
+│   └── ML_final_model_comparison.csv          # Model benchmarking results
+├── README.md                                  # Project overview and usage instructions
+└── .gitignore                                 # Ignore logs, checkpoints, cache files, etc.
 ```
 
+## 📌 Citation
+
+If you use this pipeline in your work, please cite the repository and relevant data sources (VFDB, AlphaFoldDB, UniProt).
