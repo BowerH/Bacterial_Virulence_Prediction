@@ -65,7 +65,7 @@ Trained model and performance metrics (accuracy, F1-score, etc.)
 Ready-to-use classifier for predicting new protein sequences
 
 
-## 🚀 How to run
+## 🚀 How to Run
 
 Clone this repo:
 
