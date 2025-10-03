@@ -70,7 +70,7 @@ Ready-to-use classifier for predicting new protein sequences
 Clone this repo:
 
 ```
-git clone https://github.com/your-username/virulence-structure-prediction.git
+git clone https://github.com/BowerH/virulence-structure-prediction.git
 cd virulence-structure-prediction
 ```
 
